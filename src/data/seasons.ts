@@ -12,6 +12,7 @@ export const seasons: Season[] = [
     name: "Día de la Madre",
     description: "Celebra el amor incondicional con nuestras rosas más especiales.",
     icon: "Heart",
+    bgColor: "hsl(340 60% 95%)",
   },
   {
     id: "san_valentin",
