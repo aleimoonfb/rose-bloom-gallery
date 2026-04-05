@@ -19,13 +19,21 @@ const SeasonalCollections = () => {
   const seasonName = (id: string) => t(`season.${id}` as TranslationKey);
   const seasonDesc = (id: string) => t(`season.${id}.desc` as TranslationKey);
 
+  const currentSeason = useMemo(
+    () => seasons.find((s) => s.id === activeSeason),
+    [activeSeason]
+  );
+
   const filteredRoses = useMemo(
     () => roses.filter((r) => r.seasonIds.includes(activeSeason)),
     [activeSeason]
   );
 
   return (
-    <main className="min-h-screen">
+    <main
+      className="min-h-screen transition-colors duration-700 print:bg-white"
+      style={{ backgroundColor: currentSeason?.bgColor ?? undefined }}
+    >
       <section className="py-12 text-center md:py-20">
         <p className="mb-2 font-sans text-xs tracking-[0.3em] uppercase text-muted-foreground">
           {t("seasonal.subtitle")}
@@ -38,10 +46,10 @@ const SeasonalCollections = () => {
         </p>
       </section>
 
-      <section className="container mx-auto flex justify-center px-4 md:px-8">
+      <section className="container mx-auto flex justify-center px-4 md:px-8 print:hidden">
         <div className="w-full max-w-xs">
           <Select value={activeSeason} onValueChange={setActiveSeason}>
-            <SelectTrigger className="rounded-full border-border bg-card font-serif text-sm shadow-sm">
+            <SelectTrigger className="rounded-full border-border bg-card/80 font-serif text-sm shadow-sm backdrop-blur-sm">
               <SelectValue />
             </SelectTrigger>
             <SelectContent>

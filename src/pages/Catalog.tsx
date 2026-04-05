@@ -1,110 +1,57 @@
-import { useState, useMemo } from "react";
+import { useMemo } from "react";
 import { roses, roseColors } from "@/data/roses";
-import { Filter } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
 import type { TranslationKey } from "@/i18n/translations";
 
 const Catalog = () => {
-  const [activeColor, setActiveColor] = useState("all");
-  const [sidebarOpen, setSidebarOpen] = useState(false);
   const { t } = useLanguage();
 
-  const filteredRoses = useMemo(
-    () =>
-      activeColor === "all"
-        ? roses
-        : roses.filter((r) => r.color === activeColor),
-    [activeColor]
-  );
-
-  const colorLabel = (id: string) => t(`color.${id}` as TranslationKey);
-  const activeLabel = colorLabel(activeColor);
+  const groupedByColor = useMemo(() => {
+    const colorOrder = roseColors.filter((c) => c.id !== "all");
+    return colorOrder
+      .map((color) => ({
+        colorId: color.id,
+        roses: roses.filter((r) => r.color === color.id),
+      }))
+      .filter((g) => g.roses.length > 0);
+  }, []);
 
   return (
-    <main className="min-h-screen">
-      <section className="py-10 text-center md:py-16">
+    <main className="min-h-screen print:min-h-0">
+      <section className="py-10 text-center md:py-16 print:py-6">
         <p className="mb-2 font-sans text-xs tracking-[0.3em] uppercase text-muted-foreground">
           {t("catalog.subtitle")}
         </p>
         <h1 className="font-serif text-3xl font-semibold text-foreground md:text-5xl">
           {t("catalog.title")}
         </h1>
-        <p className="mx-auto mt-4 max-w-lg font-sans text-sm leading-relaxed text-muted-foreground md:text-base">
+        <p className="mx-auto mt-4 max-w-lg font-sans text-sm leading-relaxed text-muted-foreground md:text-base print:hidden">
           {t("catalog.description")}
         </p>
       </section>
 
-      <section className="container mx-auto flex gap-0 px-4 pb-16 md:gap-10 md:px-8">
-        <button
-          onClick={() => setSidebarOpen(!sidebarOpen)}
-          className="fixed bottom-6 right-6 z-40 flex h-12 w-12 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-lg md:hidden"
-          aria-label={t("catalog.filterTitle")}
-        >
-          <Filter className="h-5 w-5" />
-        </button>
-
-        <>
-          {sidebarOpen && (
-            <div
-              className="fixed inset-0 z-30 bg-foreground/20 backdrop-blur-sm md:hidden"
-              onClick={() => setSidebarOpen(false)}
-            />
-          )}
-
-          <aside
-            className={`fixed inset-y-0 left-0 z-40 w-64 transform bg-card p-6 pt-24 shadow-xl transition-transform duration-300 md:static md:z-auto md:w-52 md:shrink-0 md:transform-none md:bg-transparent md:p-0 md:pt-0 md:shadow-none lg:w-56 ${
-              sidebarOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"
-            }`}
-          >
-            <div className="md:sticky md:top-28">
-              <h2 className="mb-6 font-serif text-lg font-semibold text-foreground">
-                {t("catalog.filterTitle")}
+      <section className="container mx-auto space-y-14 px-4 pb-20 md:px-8 print:space-y-8 print:pb-4">
+        {groupedByColor.map((group) => (
+          <div key={group.colorId}>
+            <div className="mb-6 border-b border-border pb-2 print:mb-3">
+              <h2 className="font-serif text-xl font-semibold tracking-wide uppercase text-foreground md:text-2xl">
+                {t(`colorGroup.${group.colorId}` as TranslationKey)}
               </h2>
-              <nav className="flex flex-col gap-2">
-                {roseColors.map((color) => {
-                  const isActive = activeColor === color.id;
-                  return (
-                    <button
-                      key={color.id}
-                      onClick={() => {
-                        setActiveColor(color.id);
-                        setSidebarOpen(false);
-                      }}
-                      className={`rounded-full px-5 py-2.5 text-left font-serif text-sm transition-all duration-200 ${
-                        isActive
-                          ? "bg-primary text-primary-foreground shadow-sm"
-                          : "bg-secondary/60 text-muted-foreground hover:bg-secondary hover:text-foreground"
-                      }`}
-                    >
-                      {colorLabel(color.id)}
-                    </button>
-                  );
-                })}
-              </nav>
             </div>
-          </aside>
-        </>
 
-        <div className="flex-1">
-          <p className="mb-6 font-sans text-xs tracking-widest uppercase text-muted-foreground">
-            {activeLabel} — {filteredRoses.length}{" "}
-            {filteredRoses.length === 1 ? t("catalog.variety") : t("catalog.varieties")}
-          </p>
-
-          {filteredRoses.length > 0 ? (
-            <div className="grid grid-cols-2 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-              {filteredRoses.map((rose, i) => (
+            <div className="grid grid-cols-2 gap-x-6 gap-y-8 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 print:grid-cols-4 print:gap-4">
+              {group.roses.map((rose, i) => (
                 <article
                   key={rose.id}
                   className="group flex animate-fade-in flex-col items-center text-center"
                   style={{ animationDelay: `${i * 60}ms` }}
                 >
-                  <div className="mb-4 flex aspect-[3/4] w-full items-center justify-center overflow-hidden rounded-lg bg-secondary/30 p-5">
+                  <div className="mb-3 flex aspect-[3/4] w-full items-center justify-center overflow-hidden rounded-lg bg-secondary/30 p-5 print:bg-transparent print:p-2">
                     <img
                       src={rose.image}
                       alt={rose.name}
                       loading="lazy"
-                      className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-105"
+                      className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-105 print:group-hover:scale-100"
                     />
                   </div>
                   <h3 className="font-serif text-base font-medium text-foreground md:text-lg">
@@ -113,19 +60,15 @@ const Catalog = () => {
                   {(rose.method || rose.type) && (
                     <p className="mt-0.5 font-sans text-[11px] tracking-widest uppercase text-muted-foreground">
                       {rose.method
-                        ? `${t("catalog.method")}: ${rose.method}`
-                        : `${t("catalog.type")}: ${rose.type}`}
+                        ? `${t("catalog.method")}: ${t(`method.${rose.method}` as TranslationKey)}`
+                        : `${t("catalog.type")}: ${t(`method.${rose.type}` as TranslationKey)}`}
                     </p>
                   )}
                 </article>
               ))}
             </div>
-          ) : (
-            <p className="py-20 text-center font-sans text-sm text-muted-foreground">
-              {t("catalog.empty")}
-            </p>
-          )}
-        </div>
+          </div>
+        ))}
       </section>
     </main>
   );

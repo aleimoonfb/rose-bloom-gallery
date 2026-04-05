@@ -93,6 +93,20 @@ const translations = {
   "about.location": { es: "Ubicación", en: "Location", ru: "Местоположение" },
   "about.social": { es: "Redes Sociales", en: "Social Media", ru: "Соцсети" },
 
+  // Methods & types
+  "method.Absorción": { es: "Absorción", en: "Absorption", ru: "Абсорбция" },
+  "method.Fresca": { es: "Fresca", en: "Fresh", ru: "Свежая" },
+  "method.Aspersión": { es: "Aspersión", en: "Spray", ru: "Опрыскивание" },
+  "method.Tinturado": { es: "Tinturado", en: "Tinted", ru: "Тонированная" },
+
+  // Color group headers
+  "colorGroup.rojo": { es: "Rojos", en: "Reds", ru: "Красные" },
+  "colorGroup.blanco": { es: "Blancos & Crema", en: "Whites & Cream", ru: "Белые и кремовые" },
+  "colorGroup.rosa": { es: "Rosas", en: "Pinks", ru: "Розовые" },
+  "colorGroup.lavanda": { es: "Lavandas", en: "Lavenders", ru: "Лавандовые" },
+  "colorGroup.amarillo": { es: "Amarillos", en: "Yellows", ru: "Жёлтые" },
+  "colorGroup.tinturado": { es: "Tinturados", en: "Tinted", ru: "Тонированные" },
+
   // Footer
   "footer.brand": {
     es: "Somos una empresa familiar dedicada al cultivo y exportación de rosas de alta calidad. Ubicados en Pedro Moncayo, Ecuador — la Capital Mundial de la Rosa.",

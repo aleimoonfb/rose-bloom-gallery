@@ -6,6 +6,7 @@ import { TooltipProvider } from "@/components/ui/tooltip";
 import { LanguageProvider } from "@/i18n/LanguageContext";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import WhatsAppButton from "@/components/WhatsAppButton";
 import SeasonalCollections from "@/pages/SeasonalCollections";
 import Catalog from "@/pages/Catalog";
 import About from "@/pages/About";
@@ -31,6 +32,7 @@ const App = () => (
               </Routes>
             </div>
             <Footer />
+            <WhatsAppButton />
           </div>
         </BrowserRouter>
       </TooltipProvider>
