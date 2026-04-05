@@ -79,6 +79,7 @@ export const roses: Rose[] = [
     number: "05",
     name: "Sunset Blush",
     type: "Fresca",
+    color: "blanco",
     description:
       "Rosa en tonos durazno y coral que recuerda los atardeceres ecuatorianos. Cálida y reconfortante.",
     image: rosePeach,
