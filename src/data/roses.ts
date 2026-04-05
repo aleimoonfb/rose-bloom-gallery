@@ -57,6 +57,7 @@ export const roses: Rose[] = [
     number: "03",
     name: "Lavender Dream",
     method: "Absorción",
+    color: "lavanda",
     description:
       "Delicada rosa lavanda con matices violeta. Evoca serenidad, elegancia y un toque de misterio.",
     image: roseLavender,
