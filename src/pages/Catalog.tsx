@@ -1,10 +1,13 @@
 import { useState, useMemo } from "react";
 import { roses, roseColors } from "@/data/roses";
 import { Filter } from "lucide-react";
+import { useLanguage } from "@/i18n/LanguageContext";
+import type { TranslationKey } from "@/i18n/translations";
 
 const Catalog = () => {
   const [activeColor, setActiveColor] = useState("all");
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const { t } = useLanguage();
 
   const filteredRoses = useMemo(
     () =>
@@ -14,37 +17,33 @@ const Catalog = () => {
     [activeColor]
   );
 
-  const activeLabel = roseColors.find((c) => c.id === activeColor)?.name ?? "Todas";
+  const colorLabel = (id: string) => t(`color.${id}` as TranslationKey);
+  const activeLabel = colorLabel(activeColor);
 
   return (
     <main className="min-h-screen">
-      {/* Hero */}
       <section className="py-10 text-center md:py-16">
         <p className="mb-2 font-sans text-xs tracking-[0.3em] uppercase text-muted-foreground">
-          Catálogo Completo
+          {t("catalog.subtitle")}
         </p>
         <h1 className="font-serif text-3xl font-semibold text-foreground md:text-5xl">
-          Nuestras Rosas
+          {t("catalog.title")}
         </h1>
         <p className="mx-auto mt-4 max-w-lg font-sans text-sm leading-relaxed text-muted-foreground md:text-base">
-          Explora todas nuestras variedades premium cultivadas en las tierras
-          altas de Ecuador.
+          {t("catalog.description")}
         </p>
       </section>
 
       <section className="container mx-auto flex gap-0 px-4 pb-16 md:gap-10 md:px-8">
-        {/* Mobile filter toggle */}
         <button
           onClick={() => setSidebarOpen(!sidebarOpen)}
           className="fixed bottom-6 right-6 z-40 flex h-12 w-12 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-lg md:hidden"
-          aria-label="Filtrar por color"
+          aria-label={t("catalog.filterTitle")}
         >
           <Filter className="h-5 w-5" />
         </button>
 
-        {/* Sidebar — mobile overlay + desktop sticky */}
         <>
-          {/* Mobile backdrop */}
           {sidebarOpen && (
             <div
               className="fixed inset-0 z-30 bg-foreground/20 backdrop-blur-sm md:hidden"
@@ -53,16 +52,14 @@ const Catalog = () => {
           )}
 
           <aside
-            className={`
-              fixed inset-y-0 left-0 z-40 w-64 transform bg-card p-6 pt-24 shadow-xl transition-transform duration-300 md:static md:z-auto md:w-52 md:shrink-0 md:transform-none md:bg-transparent md:p-0 md:pt-0 md:shadow-none lg:w-56
-              ${sidebarOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"}
-            `}
+            className={`fixed inset-y-0 left-0 z-40 w-64 transform bg-card p-6 pt-24 shadow-xl transition-transform duration-300 md:static md:z-auto md:w-52 md:shrink-0 md:transform-none md:bg-transparent md:p-0 md:pt-0 md:shadow-none lg:w-56 ${
+              sidebarOpen ? "translate-x-0" : "-translate-x-full md:translate-x-0"
+            }`}
           >
             <div className="md:sticky md:top-28">
               <h2 className="mb-6 font-serif text-lg font-semibold text-foreground">
-                Filtrar por Color
+                {t("catalog.filterTitle")}
               </h2>
-
               <nav className="flex flex-col gap-2">
                 {roseColors.map((color) => {
                   const isActive = activeColor === color.id;
@@ -79,7 +76,7 @@ const Catalog = () => {
                           : "bg-secondary/60 text-muted-foreground hover:bg-secondary hover:text-foreground"
                       }`}
                     >
-                      {color.name}
+                      {colorLabel(color.id)}
                     </button>
                   );
                 })}
@@ -88,11 +85,10 @@ const Catalog = () => {
           </aside>
         </>
 
-        {/* Grid — editorial catalog style */}
         <div className="flex-1">
           <p className="mb-6 font-sans text-xs tracking-widest uppercase text-muted-foreground">
             {activeLabel} — {filteredRoses.length}{" "}
-            {filteredRoses.length === 1 ? "variedad" : "variedades"}
+            {filteredRoses.length === 1 ? t("catalog.variety") : t("catalog.varieties")}
           </p>
 
           {filteredRoses.length > 0 ? (
@@ -117,8 +113,8 @@ const Catalog = () => {
                   {(rose.method || rose.type) && (
                     <p className="mt-0.5 font-sans text-[11px] tracking-widest uppercase text-muted-foreground">
                       {rose.method
-                        ? `Método: ${rose.method}`
-                        : `Tipo: ${rose.type}`}
+                        ? `${t("catalog.method")}: ${rose.method}`
+                        : `${t("catalog.type")}: ${rose.type}`}
                     </p>
                   )}
                 </article>
@@ -126,7 +122,7 @@ const Catalog = () => {
             </div>
           ) : (
             <p className="py-20 text-center font-sans text-sm text-muted-foreground">
-              No hay rosas disponibles en esta categoría.
+              {t("catalog.empty")}
             </p>
           )}
         </div>
