@@ -4,10 +4,21 @@ export interface Rose {
   name: string;
   method?: string;
   type?: string;
+  color: string;
   description: string;
   image: string;
   seasonIds: string[];
 }
+
+export const roseColors = [
+  { id: "all", name: "Todas" },
+  { id: "rojo", name: "Rojo" },
+  { id: "blanco", name: "Blanco & Crema" },
+  { id: "rosa", name: "Rosa" },
+  { id: "lavanda", name: "Lavanda" },
+  { id: "amarillo", name: "Amarillo" },
+  { id: "tinturado", name: "Tinturado" },
+] as const;
 
 import rosePink from "@/assets/rose-pink.png";
 import roseRed from "@/assets/rose-red.png";
