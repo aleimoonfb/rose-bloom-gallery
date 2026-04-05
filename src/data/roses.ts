@@ -90,6 +90,7 @@ export const roses: Rose[] = [
     number: "06",
     name: "Golden Joy",
     type: "Fresca",
+    color: "amarillo",
     description:
       "Rosa amarilla radiante que transmite alegría, amistad y gratitud. Ideal para iluminar cualquier momento.",
     image: roseYellow,
