@@ -19,6 +19,7 @@ export const seasons: Season[] = [
     name: "San Valentín",
     description: "Expresa tu amor con las rosas más románticas del mundo.",
     icon: "HeartHandshake",
+    bgColor: "hsl(0 70% 95%)",
   },
   {
     id: "navidad",
