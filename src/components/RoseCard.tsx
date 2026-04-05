@@ -25,13 +25,9 @@ const RoseCard = ({ rose }: RoseCardProps) => {
 
       {(rose.method || rose.type) && (
         <p className="mt-1 font-sans text-xs tracking-widest uppercase text-muted-foreground">
-          {rose.method ? `Método: ${rose.method}` : `Tipo: ${rose.type}`}
+          {rose.method ? `${t("catalog.method")}: ${t(`method.${rose.method}` as TranslationKey)}` : `${t("catalog.type")}: ${t(`method.${rose.type}` as TranslationKey)}`}
         </p>
       )}
-
-      <p className="mt-3 font-sans text-sm leading-relaxed text-muted-foreground">
-        {rose.description}
-      </p>
     </article>
   );
 };
