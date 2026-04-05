@@ -33,5 +33,6 @@ export const seasons: Season[] = [
     name: "Todo el Año",
     description: "Rosas frescas disponibles en cualquier momento.",
     icon: "Sun",
+    bgColor: "hsl(45 60% 95%)",
   },
 ];

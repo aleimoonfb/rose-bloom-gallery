@@ -1,10 +1,13 @@
 import type { Rose } from "@/data/roses";
+import { useLanguage } from "@/i18n/LanguageContext";
+import type { TranslationKey } from "@/i18n/translations";
 
 interface RoseCardProps {
   rose: Rose;
 }
 
 const RoseCard = ({ rose }: RoseCardProps) => {
+  const { t } = useLanguage();
   return (
     <article className="card-product group flex flex-col items-center text-center">
       <div className="mb-4 flex aspect-square w-full items-center justify-center overflow-hidden rounded-lg bg-secondary/40 p-6">
