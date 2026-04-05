@@ -3,6 +3,7 @@ export interface Season {
   name: string;
   description: string;
   icon: string;
+  bgColor: string;
 }
 
 export const seasons: Season[] = [
