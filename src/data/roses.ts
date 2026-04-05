@@ -4,10 +4,21 @@ export interface Rose {
   name: string;
   method?: string;
   type?: string;
+  color: string;
   description: string;
   image: string;
   seasonIds: string[];
 }
+
+export const roseColors = [
+  { id: "all", name: "Todas" },
+  { id: "rojo", name: "Rojo" },
+  { id: "blanco", name: "Blanco & Crema" },
+  { id: "rosa", name: "Rosa" },
+  { id: "lavanda", name: "Lavanda" },
+  { id: "amarillo", name: "Amarillo" },
+  { id: "tinturado", name: "Tinturado" },
+] as const;
 
 import rosePink from "@/assets/rose-pink.png";
 import roseRed from "@/assets/rose-red.png";
@@ -24,6 +35,7 @@ export const roses: Rose[] = [
     number: "01",
     name: "Sweet Mother",
     method: "Absorción",
+    color: "rosa",
     description:
       "Rosa tintada en tonos rosa pastel con degradados suaves. Perfecta para expresar ternura y gratitud maternal.",
     image: rosePink,
@@ -34,6 +46,7 @@ export const roses: Rose[] = [
     number: "02",
     name: "Eternal Love",
     type: "Fresca",
+    color: "rojo",
     description:
       "Rosa roja de tallo largo con pétalos aterciopelados. El clásico símbolo del amor profundo e incondicional.",
     image: roseRed,
@@ -44,6 +57,7 @@ export const roses: Rose[] = [
     number: "03",
     name: "Lavender Dream",
     method: "Absorción",
+    color: "lavanda",
     description:
       "Delicada rosa lavanda con matices violeta. Evoca serenidad, elegancia y un toque de misterio.",
     image: roseLavender,
@@ -54,6 +68,7 @@ export const roses: Rose[] = [
     number: "04",
     name: "Pure Grace",
     type: "Fresca",
+    color: "blanco",
     description:
       "Rosa blanca de pétalos inmaculados. Símbolo de pureza, nuevos comienzos y amor sincero.",
     image: roseWhite,
@@ -64,6 +79,7 @@ export const roses: Rose[] = [
     number: "05",
     name: "Sunset Blush",
     type: "Fresca",
+    color: "blanco",
     description:
       "Rosa en tonos durazno y coral que recuerda los atardeceres ecuatorianos. Cálida y reconfortante.",
     image: rosePeach,
@@ -74,6 +90,7 @@ export const roses: Rose[] = [
     number: "06",
     name: "Golden Joy",
     type: "Fresca",
+    color: "amarillo",
     description:
       "Rosa amarilla radiante que transmite alegría, amistad y gratitud. Ideal para iluminar cualquier momento.",
     image: roseYellow,
@@ -84,6 +101,7 @@ export const roses: Rose[] = [
     number: "07",
     name: "Dulce Abrazo",
     method: "Absorción",
+    color: "tinturado",
     description:
       "Rosa bicolor con pétalos crema y bordes rosados. Un abrazo visual lleno de dulzura y delicadeza.",
     image: roseBicolor,
@@ -94,6 +112,7 @@ export const roses: Rose[] = [
     number: "08",
     name: "Mystic Blue",
     method: "Absorción",
+    color: "tinturado",
     description:
       "Rosa tintada en azul profundo con reflejos celestes. Única, misteriosa y absolutamente cautivadora.",
     image: roseBlue,

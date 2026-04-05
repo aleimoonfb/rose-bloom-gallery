@@ -1,8 +1,15 @@
 import { useState, useMemo } from "react";
-import SeasonTabs from "@/components/SeasonTabs";
 import RoseCard from "@/components/RoseCard";
 import { roses } from "@/data/roses";
 import { seasons } from "@/data/seasons";
+import { ChevronDown } from "lucide-react";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 const SeasonalCollections = () => {
   const [activeSeason, setActiveSeason] = useState("madres");
@@ -22,7 +29,7 @@ const SeasonalCollections = () => {
       {/* Hero section */}
       <section className="py-12 text-center md:py-20">
         <p className="mb-2 font-sans text-xs tracking-[0.3em] uppercase text-muted-foreground">
-          Colecciones por Temporada
+          Colección Especial
         </p>
         <h1 className="font-serif text-3xl font-semibold text-foreground md:text-5xl">
           {activeMeta?.name ?? "Colecciones"}
@@ -32,9 +39,28 @@ const SeasonalCollections = () => {
         </p>
       </section>
 
-      {/* Tabs */}
-      <section className="container mx-auto px-4 md:px-8">
-        <SeasonTabs activeId={activeSeason} onSelect={setActiveSeason} />
+      {/* Minimal dropdown selector */}
+      <section className="container mx-auto flex justify-center px-4 md:px-8">
+        <div className="w-full max-w-xs">
+          <Select value={activeSeason} onValueChange={setActiveSeason}>
+            <SelectTrigger className="rounded-full border-border bg-card font-serif text-sm shadow-sm">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              {seasons
+                .filter((s) => s.id !== "todo_el_ano")
+                .map((season) => (
+                  <SelectItem
+                    key={season.id}
+                    value={season.id}
+                    className="font-serif text-sm"
+                  >
+                    {season.name}
+                  </SelectItem>
+                ))}
+            </SelectContent>
+          </Select>
+        </div>
       </section>
 
       {/* Grid */}
