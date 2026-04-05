@@ -2,7 +2,8 @@ import { useState, useMemo } from "react";
 import RoseCard from "@/components/RoseCard";
 import { roses } from "@/data/roses";
 import { seasons } from "@/data/seasons";
-import { ChevronDown } from "lucide-react";
+import { useLanguage } from "@/i18n/LanguageContext";
+import type { TranslationKey } from "@/i18n/translations";
 import {
   Select,
   SelectContent,
@@ -13,11 +14,10 @@ import {
 
 const SeasonalCollections = () => {
   const [activeSeason, setActiveSeason] = useState("madres");
+  const { t } = useLanguage();
 
-  const activeMeta = useMemo(
-    () => seasons.find((s) => s.id === activeSeason),
-    [activeSeason]
-  );
+  const seasonName = (id: string) => t(`season.${id}` as TranslationKey);
+  const seasonDesc = (id: string) => t(`season.${id}.desc` as TranslationKey);
 
   const filteredRoses = useMemo(
     () => roses.filter((r) => r.seasonIds.includes(activeSeason)),
@@ -26,20 +26,18 @@ const SeasonalCollections = () => {
 
   return (
     <main className="min-h-screen">
-      {/* Hero section */}
       <section className="py-12 text-center md:py-20">
         <p className="mb-2 font-sans text-xs tracking-[0.3em] uppercase text-muted-foreground">
-          Colección Especial
+          {t("seasonal.subtitle")}
         </p>
         <h1 className="font-serif text-3xl font-semibold text-foreground md:text-5xl">
-          {activeMeta?.name ?? "Colecciones"}
+          {seasonName(activeSeason)}
         </h1>
         <p className="mx-auto mt-4 max-w-lg font-sans text-sm leading-relaxed text-muted-foreground md:text-base">
-          {activeMeta?.description}
+          {seasonDesc(activeSeason)}
         </p>
       </section>
 
-      {/* Minimal dropdown selector */}
       <section className="container mx-auto flex justify-center px-4 md:px-8">
         <div className="w-full max-w-xs">
           <Select value={activeSeason} onValueChange={setActiveSeason}>
@@ -55,7 +53,7 @@ const SeasonalCollections = () => {
                     value={season.id}
                     className="font-serif text-sm"
                   >
-                    {season.name}
+                    {seasonName(season.id)}
                   </SelectItem>
                 ))}
             </SelectContent>
@@ -63,7 +61,6 @@ const SeasonalCollections = () => {
         </div>
       </section>
 
-      {/* Grid */}
       <section className="container mx-auto px-4 py-10 md:px-8 md:py-16">
         {filteredRoses.length > 0 ? (
           <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
@@ -79,7 +76,7 @@ const SeasonalCollections = () => {
           </div>
         ) : (
           <p className="py-20 text-center font-sans text-sm text-muted-foreground">
-            Próximamente — estamos preparando esta colección con mucho cariño.
+            {t("seasonal.empty")}
           </p>
         )}
       </section>
