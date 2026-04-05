@@ -68,6 +68,7 @@ export const roses: Rose[] = [
     number: "04",
     name: "Pure Grace",
     type: "Fresca",
+    color: "blanco",
     description:
       "Rosa blanca de pétalos inmaculados. Símbolo de pureza, nuevos comienzos y amor sincero.",
     image: roseWhite,
