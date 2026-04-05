@@ -101,6 +101,7 @@ export const roses: Rose[] = [
     number: "07",
     name: "Dulce Abrazo",
     method: "Absorción",
+    color: "tinturado",
     description:
       "Rosa bicolor con pétalos crema y bordes rosados. Un abrazo visual lleno de dulzura y delicadeza.",
     image: roseBicolor,
