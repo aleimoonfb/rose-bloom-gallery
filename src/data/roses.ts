@@ -112,6 +112,7 @@ export const roses: Rose[] = [
     number: "08",
     name: "Mystic Blue",
     method: "Absorción",
+    color: "tinturado",
     description:
       "Rosa tintada en azul profundo con reflejos celestes. Única, misteriosa y absolutamente cautivadora.",
     image: roseBlue,
