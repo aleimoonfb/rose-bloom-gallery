@@ -35,6 +35,7 @@ export const roses: Rose[] = [
     number: "01",
     name: "Sweet Mother",
     method: "Absorción",
+    color: "rosa",
     description:
       "Rosa tintada en tonos rosa pastel con degradados suaves. Perfecta para expresar ternura y gratitud maternal.",
     image: rosePink,
