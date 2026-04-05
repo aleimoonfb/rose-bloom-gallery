@@ -46,6 +46,7 @@ export const roses: Rose[] = [
     number: "02",
     name: "Eternal Love",
     type: "Fresca",
+    color: "rojo",
     description:
       "Rosa roja de tallo largo con pétalos aterciopelados. El clásico símbolo del amor profundo e incondicional.",
     image: roseRed,
