@@ -26,6 +26,7 @@ export const seasons: Season[] = [
     name: "Navidad",
     description: "Ilumina las fiestas con arreglos florales únicos.",
     icon: "Sparkles",
+    bgColor: "hsl(140 40% 95%)",
   },
   {
     id: "todo_el_ano",
