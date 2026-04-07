@@ -29,12 +29,28 @@ const SeasonalCollections = () => {
     [activeSeason]
   );
 
+  // Día de las Madres gets a special immersive background
+  const isMadres = activeSeason === "madres";
+
   return (
-    <main
-      className="min-h-screen transition-colors duration-700 print:bg-white"
-      style={{ backgroundColor: currentSeason?.bgColor ?? undefined }}
-    >
-      <section className="py-12 text-center md:py-20">
+    <main className="relative min-h-screen transition-colors duration-700 print:bg-white">
+      {/* Background layer */}
+      {isMadres ? (
+        <div className="absolute inset-0 -z-10">
+          <div
+            className="h-full w-full bg-cover bg-center bg-no-repeat"
+            style={{ backgroundImage: "url('/assets/mothers-bg.jpg')" }}
+          />
+          <div className="absolute inset-0 bg-background/80 backdrop-blur-sm" />
+        </div>
+      ) : (
+        <div
+          className="absolute inset-0 -z-10 transition-colors duration-700"
+          style={{ backgroundColor: currentSeason?.bgColor ?? undefined }}
+        />
+      )}
+
+      <section className="relative py-12 text-center md:py-20">
         <p className="mb-2 font-sans text-xs tracking-[0.3em] uppercase text-muted-foreground">
           {t("seasonal.subtitle")}
         </p>
