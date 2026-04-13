@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, Flower2, Globe } from "lucide-react";
+import { Menu, X, Globe } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
 import { localeLabels, type Locale } from "@/i18n/translations";
 import {
@@ -16,24 +16,33 @@ const Navbar = () => {
   const { locale, setLocale, t } = useLanguage();
 
   const navLinks = [
+    { to: "/", label: t("nav.home") },
     { to: "/catalogo", label: t("nav.catalog") },
-    { to: "/", label: t("nav.seasonal") },
+    { to: "/temporadas", label: t("nav.seasonal") },
+    { to: "/contacto", label: t("nav.contact") },
     { to: "/quienes-somos", label: t("nav.about") },
   ];
 
   return (
-    <nav className="sticky top-0 z-50 border-b border-border bg-background/90 backdrop-blur-md">
-      <div className="container mx-auto flex items-center justify-between px-4 py-4 md:px-8">
+    <nav className="sticky top-0 z-50 border-b border-border bg-background/90 backdrop-blur-md print:hidden">
+      <div className="container mx-auto flex items-center justify-between px-4 py-3 md:px-8">
         <Link to="/" className="flex items-center gap-2">
-          <Flower2 className="h-6 w-6 text-primary" />
-          <span className="font-serif text-lg font-semibold tracking-wide text-foreground md:text-xl">
-            EMFACC Magic Roses
-          </span>
+          <img
+            src="/assets/logo.png"
+            alt="EMFACC Magic Roses"
+            className="h-10 w-auto md:h-12"
+            onError={(e) => {
+              // Fallback to inline SVG placeholder (grey circle)
+              e.currentTarget.onerror = null;
+              e.currentTarget.src =
+                "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Ccircle cx='20' cy='20' r='18' fill='%23ccc'/%3E%3Ctext x='20' y='24' text-anchor='middle' font-size='10' fill='%23666'%3EMR%3C/text%3E%3C/svg%3E";
+            }}
+          />
         </Link>
 
         {/* Desktop nav */}
         <div className="hidden items-center gap-8 md:flex">
-          <ul className="flex items-center gap-8">
+          <ul className="flex items-center gap-6">
             {navLinks.map((link) => (
               <li key={link.to}>
                 <Link
@@ -50,7 +59,6 @@ const Navbar = () => {
             ))}
           </ul>
 
-          {/* Language selector */}
           <DropdownMenu>
             <DropdownMenuTrigger className="flex items-center gap-1.5 rounded-full border border-border px-3 py-1.5 font-sans text-xs tracking-wider text-muted-foreground transition-colors hover:border-primary/40 hover:text-foreground">
               <Globe className="h-3.5 w-3.5" />
@@ -61,9 +69,7 @@ const Navbar = () => {
                 <DropdownMenuItem
                   key={lang}
                   onClick={() => setLocale(lang)}
-                  className={`font-sans text-sm ${
-                    locale === lang ? "font-medium text-primary" : ""
-                  }`}
+                  className={`font-sans text-sm ${locale === lang ? "font-medium text-primary" : ""}`}
                 >
                   {localeLabels[lang]}
                 </DropdownMenuItem>
@@ -84,9 +90,7 @@ const Navbar = () => {
                 <DropdownMenuItem
                   key={lang}
                   onClick={() => setLocale(lang)}
-                  className={`font-sans text-sm ${
-                    locale === lang ? "font-medium text-primary" : ""
-                  }`}
+                  className={`font-sans text-sm ${locale === lang ? "font-medium text-primary" : ""}`}
                 >
                   {localeLabels[lang]}
                 </DropdownMenuItem>

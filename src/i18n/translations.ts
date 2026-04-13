@@ -8,9 +8,31 @@ export const localeLabels: Record<Locale, string> = {
 
 const translations = {
   // Navbar
+  "nav.home": { es: "Inicio", en: "Home", ru: "Главная" },
   "nav.catalog": { es: "Catálogo General", en: "Full Catalog", ru: "Полный каталог" },
-  "nav.seasonal": { es: "Colecciones por Temporada", en: "Seasonal Collections", ru: "Сезонные коллекции" },
+  "nav.seasonal": { es: "Temporadas", en: "Seasons", ru: "Сезоны" },
+  "nav.contact": { es: "Contacto", en: "Contact", ru: "Контакты" },
   "nav.about": { es: "Quiénes Somos", en: "About Us", ru: "О нас" },
+
+  // Home
+  "home.subtitle": { es: "Desde Ecuador al mundo", en: "From Ecuador to the world", ru: "Из Эквадора в мир" },
+  "home.title": { es: "Rosas que Inspiran", en: "Roses that Inspire", ru: "Розы, которые вдохновляют" },
+  "home.description": {
+    es: "Cultivamos las rosas más exquisitas en las tierras altas de Ecuador, llevando belleza y elegancia a cada rincón del mundo.",
+    en: "We grow the most exquisite roses in the highlands of Ecuador, bringing beauty and elegance to every corner of the world.",
+    ru: "Мы выращиваем изысканнейшие розы в высокогорьях Эквадора, неся красоту и элегантность в каждый уголок мира.",
+  },
+  "home.cta": { es: "Ver Catálogo", en: "View Catalog", ru: "Смотреть каталог" },
+
+  // Contact page
+  "contact.subtitle": { es: "Hablemos", en: "Get in Touch", ru: "Свяжитесь с нами" },
+  "contact.title": { es: "Contacto", en: "Contact", ru: "Контакты" },
+  "contact.infoTitle": { es: "Información de Contacto", en: "Contact Information", ru: "Контактная информация" },
+  "contact.formTitle": { es: "Envíanos un Mensaje", en: "Send Us a Message", ru: "Отправьте нам сообщение" },
+  "contact.name": { es: "Nombre", en: "Name", ru: "Имя" },
+  "contact.email": { es: "Correo Electrónico", en: "Email", ru: "Эл. почта" },
+  "contact.message": { es: "Mensaje", en: "Message", ru: "Сообщение" },
+  "contact.send": { es: "Enviar Mensaje", en: "Send Message", ru: "Отправить" },
 
   // Catalog page
   "catalog.subtitle": { es: "Catálogo Completo", en: "Full Catalog", ru: "Полный каталог" },
@@ -20,6 +42,9 @@ const translations = {
     en: "Explore all our premium varieties grown in the highlands of Ecuador.",
     ru: "Откройте для себя все наши премиальные сорта, выращенные в высокогорьях Эквадора.",
   },
+  "catalog.filterAll": { es: "Todas", en: "All", ru: "Все" },
+  "catalog.filterFresh": { es: "Rosas Frescas", en: "Fresh Roses", ru: "Свежие розы" },
+  "catalog.filterTinted": { es: "Tinturados", en: "Tinted", ru: "Тонированные" },
   "catalog.filterTitle": { es: "Filtrar por Color", en: "Filter by Color", ru: "Фильтр по цвету" },
   "catalog.varieties": { es: "variedades", en: "varieties", ru: "сортов" },
   "catalog.variety": { es: "variedad", en: "variety", ru: "сорт" },
@@ -30,15 +55,34 @@ const translations = {
   },
   "catalog.method": { es: "Método", en: "Method", ru: "Метод" },
   "catalog.type": { es: "Tipo", en: "Type", ru: "Тип" },
+  "catalog.downloadPdf": { es: "Descargar Catálogo PDF", en: "Download PDF Catalog", ru: "Скачать каталог PDF" },
 
-  // Color filters
+  // Color filters (updated)
   "color.all": { es: "Todas", en: "All", ru: "Все" },
-  "color.rojo": { es: "Rojo", en: "Red", ru: "Красный" },
-  "color.blanco": { es: "Blanco & Crema", en: "White & Cream", ru: "Белый и кремовый" },
-  "color.rosa": { es: "Rosa", en: "Pink", ru: "Розовый" },
+  "color.red": { es: "Rojo", en: "Red", ru: "Красный" },
+  "color.hot_pink": { es: "Hot Pink", en: "Hot Pink", ru: "Ярко-розовый" },
   "color.lavanda": { es: "Lavanda", en: "Lavender", ru: "Лавандовый" },
-  "color.amarillo": { es: "Amarillo", en: "Yellow", ru: "Жёлтый" },
-  "color.tinturado": { es: "Tinturado", en: "Tinted", ru: "Тонированный" },
+  "color.pink": { es: "Rosa", en: "Pink", ru: "Розовый" },
+  "color.white_cream": { es: "Blanco & Crema", en: "White & Cream", ru: "Белый и кремовый" },
+  "color.peach": { es: "Durazno", en: "Peach", ru: "Персиковый" },
+  "color.orange_yellow": { es: "Naranja & Amarillo", en: "Orange & Yellow", ru: "Оранжевый и жёлтый" },
+  "color.green": { es: "Verde", en: "Green", ru: "Зелёный" },
+  "color.blue": { es: "Azul", en: "Blue", ru: "Синий" },
+  "color.multicolor": { es: "Multicolor", en: "Multicolor", ru: "Многоцветный" },
+  "color.dark": { es: "Oscuro", en: "Dark", ru: "Тёмный" },
+
+  // Color group headers
+  "colorGroup.red": { es: "Rojos", en: "Reds", ru: "Красные" },
+  "colorGroup.hot_pink": { es: "Hot Pink", en: "Hot Pink", ru: "Ярко-розовые" },
+  "colorGroup.lavanda": { es: "Lavandas", en: "Lavenders", ru: "Лавандовые" },
+  "colorGroup.pink": { es: "Rosa Claro", en: "Light Pink", ru: "Светло-розовые" },
+  "colorGroup.white_cream": { es: "Blancos & Crema", en: "Whites & Cream", ru: "Белые и кремовые" },
+  "colorGroup.peach": { es: "Durazno", en: "Peach", ru: "Персиковые" },
+  "colorGroup.orange_yellow": { es: "Naranja & Amarillo", en: "Orange & Yellow", ru: "Оранжевые и жёлтые" },
+  "colorGroup.green": { es: "Verdes", en: "Greens", ru: "Зелёные" },
+  "colorGroup.blue": { es: "Azules", en: "Blues", ru: "Синие" },
+  "colorGroup.multicolor": { es: "Multicolor", en: "Multicolor", ru: "Многоцветные" },
+  "colorGroup.dark": { es: "Oscuros", en: "Dark", ru: "Тёмные" },
 
   // Seasonal collections page
   "seasonal.subtitle": { es: "Colección Especial", en: "Special Collection", ru: "Специальная коллекция" },
@@ -92,6 +136,12 @@ const translations = {
   "about.email": { es: "Correo", en: "Email", ru: "Эл. почта" },
   "about.location": { es: "Ubicación", en: "Location", ru: "Местоположение" },
   "about.social": { es: "Redes Sociales", en: "Social Media", ru: "Соцсети" },
+
+  // Methods & types
+  "method.Absorción": { es: "Absorción", en: "Absorption", ru: "Абсорбция" },
+  "method.Fresca": { es: "Fresca", en: "Fresh", ru: "Свежая" },
+  "method.Aspersión": { es: "Aspersión", en: "Spray", ru: "Опрыскивание" },
+  "method.Tinturado": { es: "Tinturado", en: "Tinted", ru: "Тонированная" },
 
   // Footer
   "footer.brand": {

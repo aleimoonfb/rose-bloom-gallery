@@ -1,4 +1,4 @@
-import heroFarm from "@/assets/hero-farm.jpg";
+import heroFarm from "@/assets/lamina.png";
 import { MapPin, Phone, Mail, Instagram, Heart } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
 
@@ -7,11 +7,11 @@ const About = () => {
 
   return (
     <main className="min-h-screen">
-      <section className="relative h-64 overflow-hidden md:h-96">
+      <section className="relative h-72 items-center overflow-hidden md:h-96">
         <img
           src={heroFarm}
           alt="Pedro Moncayo, Ecuador"
-          className="h-full w-full object-cover"
+          className="h-full w-full object-cover object-center"
           width={1920}
           height={800}
         />
@@ -62,10 +62,16 @@ const About = () => {
               <div>
                 <p className="font-sans text-sm font-medium text-foreground">{t("about.email")}</p>
                 <a
-                  href="mailto:salestabacundo@gmail.com"
+                  href="mailto:sales1@emfacc.com,sales2@emfacc.com"
                   className="mt-1 block font-sans text-sm text-muted-foreground transition-colors hover:text-primary"
                 >
-                  salestabacundo@gmail.com
+                  sales1@emfacc.com
+                </a>
+                <a
+                  href="mailto:sales1@emfacc.com,sales2@emfacc.com"
+                  className="mt-1 block font-sans text-sm text-muted-foreground transition-colors hover:text-primary"
+                >
+                  sales2@emfacc.com
                 </a>
               </div>
             </div>
@@ -81,12 +87,12 @@ const About = () => {
               <div>
                 <p className="font-sans text-sm font-medium text-foreground">{t("about.social")}</p>
                 <a
-                  href="https://www.instagram.com/emfaccmagicroses"
+                  href="https://www.instagram.com/magic_roses_ec/#"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="mt-1 block font-sans text-sm text-muted-foreground transition-colors hover:text-primary"
                 >
-                  @emfaccmagicroses
+                  @magic_roses_ec
                 </a>
               </div>
             </div>

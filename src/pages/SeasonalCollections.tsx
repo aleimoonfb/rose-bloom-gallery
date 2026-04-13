@@ -1,19 +1,15 @@
-import { useState, useMemo } from "react";
+import { useMemo } from "react";
 import RoseCard from "@/components/RoseCard";
 import { roses } from "@/data/roses";
-import { seasons } from "@/data/seasons";
 import { useLanguage } from "@/i18n/LanguageContext";
 import type { TranslationKey } from "@/i18n/translations";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
+import DownloadPdfButton from "@/components/DownloadPdfButton";
+
+const MOTHERS_BG =
+  "https://images.unsplash.com/photo-1490750967868-88aa4f44baee?w=1920&q=80";
 
 const SeasonalCollections = () => {
-  const [activeSeason, setActiveSeason] = useState("madres");
+  const activeSeason = "madres";
   const { t } = useLanguage();
 
   const seasonName = (id: string) => t(`season.${id}` as TranslationKey);
@@ -25,8 +21,17 @@ const SeasonalCollections = () => {
   );
 
   return (
-    <main className="min-h-screen">
-      <section className="py-12 text-center md:py-20">
+    <main className="relative min-h-screen transition-colors duration-700 print:bg-white">
+      {/* Background layer — faint floral texture */}
+      <div className="absolute inset-0 -z-10">
+        <div
+          className="h-full w-full bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: `url('${MOTHERS_BG}')` }}
+        />
+        <div className="absolute inset-0 bg-white/85 backdrop-blur-sm" />
+      </div>
+
+      <section className="relative py-12 text-center md:py-20">
         <p className="mb-2 font-sans text-xs tracking-[0.3em] uppercase text-muted-foreground">
           {t("seasonal.subtitle")}
         </p>
@@ -36,28 +41,10 @@ const SeasonalCollections = () => {
         <p className="mx-auto mt-4 max-w-lg font-sans text-sm leading-relaxed text-muted-foreground md:text-base">
           {seasonDesc(activeSeason)}
         </p>
-      </section>
 
-      <section className="container mx-auto flex justify-center px-4 md:px-8">
-        <div className="w-full max-w-xs">
-          <Select value={activeSeason} onValueChange={setActiveSeason}>
-            <SelectTrigger className="rounded-full border-border bg-card font-serif text-sm shadow-sm">
-              <SelectValue />
-            </SelectTrigger>
-            <SelectContent>
-              {seasons
-                .filter((s) => s.id !== "todo_el_ano")
-                .map((season) => (
-                  <SelectItem
-                    key={season.id}
-                    value={season.id}
-                    className="font-serif text-sm"
-                  >
-                    {seasonName(season.id)}
-                  </SelectItem>
-                ))}
-            </SelectContent>
-          </Select>
+        {/* PDF Download */}
+        <div className="mt-6 flex justify-center print:hidden">
+          <DownloadPdfButton />
         </div>
       </section>
 

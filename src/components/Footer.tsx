@@ -1,4 +1,4 @@
-import { Flower2, Phone, Mail, MapPin, Instagram } from "lucide-react";
+import { Phone, Mail, MapPin, Instagram } from "lucide-react";
 import { useLanguage } from "@/i18n/LanguageContext";
 
 const Footer = () => {
@@ -10,10 +10,16 @@ const Footer = () => {
         <div className="grid gap-8 md:grid-cols-3">
           <div>
             <div className="mb-4 flex items-center gap-2">
-              <Flower2 className="h-5 w-5 text-primary" />
-              <span className="font-serif text-lg font-semibold text-foreground">
-                EMFACC Magic Roses
-              </span>
+              <img
+                src="/assets/logo.png"
+                alt="EMFACC Magic Roses"
+                className="h-10 w-auto"
+                onError={(e) => {
+                  e.currentTarget.onerror = null;
+                  e.currentTarget.src =
+                    "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Ccircle cx='20' cy='20' r='18' fill='%23ccc'/%3E%3Ctext x='20' y='24' text-anchor='middle' font-size='10' fill='%23666'%3EMR%3C/text%3E%3C/svg%3E";
+                }}
+              />
             </div>
             <p className="font-sans text-sm leading-relaxed text-muted-foreground">
               {t("footer.brand")}
@@ -31,9 +37,14 @@ const Footer = () => {
               </li>
               <li className="flex items-start gap-2">
                 <Mail className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
-                <a href="mailto:salestabacundo@gmail.com" className="transition-colors hover:text-primary">
-                  salestabacundo@gmail.com
-                </a>
+                <div className="flex flex-col">
+                  <a href="mailto:sales1@emfacc.com,sales2@emfacc.com" className="transition-colors hover:text-primary">
+                    sales1@emfacc.com
+                  </a>
+                  <a href="mailto:sales1@emfacc.com,sales2@emfacc.com" className="transition-colors hover:text-primary">
+                    sales2@emfacc.com
+                  </a>
+                </div>
               </li>
               <li className="flex items-start gap-2">
                 <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
@@ -47,13 +58,13 @@ const Footer = () => {
               {t("footer.follow")}
             </h4>
             <a
-              href="https://www.instagram.com/emfaccmagicroses"
+              href="https://www.instagram.com/magic_roses_ec/#"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 font-sans text-sm text-muted-foreground transition-colors hover:text-primary"
             >
               <Instagram className="h-5 w-5" />
-              @emfaccmagicroses
+              @magic_roses_ec
             </a>
           </div>
         </div>
