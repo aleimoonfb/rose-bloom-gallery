@@ -1,3 +1,4 @@
+import { seasons } from "../data/seasons";
 import { useMemo } from "react";
 import RoseCard from "@/components/RoseCard";
 import { roses } from "@/data/roses";
@@ -15,10 +16,18 @@ const SeasonalCollections = () => {
   const seasonName = (id: string) => t(`season.${id}` as TranslationKey);
   const seasonDesc = (id: string) => t(`season.${id}.desc` as TranslationKey);
 
+  const currentSeason = useMemo(
+    () => seasons.find((s) => s.id === activeSeason),
+    [activeSeason]
+  );
+
   const filteredRoses = useMemo(
     () => roses.filter((r) => r.seasonIds.includes(activeSeason)),
     [activeSeason]
   );
+
+  // Día de las Madres gets a special immersive background
+  const isMadres = activeSeason === "madres";
 
   return (
     <main className="relative min-h-screen transition-colors duration-700 print:bg-white">
